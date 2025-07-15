@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by TeaM DJiNN (TeaM DJiNN) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="GlobalModelWeb" type="GlobalModelWeb">
+		<xs:annotation>
+			<xs:documentation>Глобальная модель для сайта</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="GlobalModelWeb">
+		<xs:annotation>
+			<xs:documentation>Глобальная модель для сайта</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="departmentalProject" minOccurs="0"/>
+			<xs:element ref="executionMonitoring" minOccurs="0"/>
+			<xs:element ref="modelEdit" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="departmentalProject">
+		<xs:annotation>
+			<xs:documentation>Проект департамента</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="__typename"/>
+				<xs:element ref="list" minOccurs="0"/>
+				<xs:element ref="card" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="__typename" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Тип объекта</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="list" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Вложенные объекты листа</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="__typename"/>
+				<xs:element ref="data"/>
+				<xs:element ref="pagination"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="data" type="xs:anyType">
+		<xs:annotation>
+			<xs:documentation>Обертка для вложенной модели</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="pagination" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Пагинация модели</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="total"/>
+				<xs:element ref="left"/>
+				<xs:element ref="__typename"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="total" type="xs:int" nillable="false">
+		<xs:annotation>
+			<xs:documentation>Колличество</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="left" type="xs:int" nillable="false">
+		<xs:annotation>
+			<xs:documentation>Выравнивание</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="card">
+		<xs:annotation>
+			<xs:documentation>Карточка проекта</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="id"/>
+				<xs:element ref="name"/>
+				<xs:element ref="started"/>
+				<xs:element ref="finished"/>
+				<xs:element ref="projectCode"/>
+				<xs:element ref="isBlockedToEdit"/>
+				<xs:element ref="isBlockedToCreateEdition"/>
+				<xs:element ref="dictProjectStateName"/>
+				<xs:element ref="versions"/>
+				<xs:element ref="versionNumber"/>
+				<xs:element ref="versionId"/>
+				<xs:element ref="isVersion"/>
+				<xs:element ref="changeSetKindId"/>
+				<xs:element ref="isCanSyncResultsWithEsr"/>
+				<xs:element ref="isPrimaryVersion"/>
+				<xs:element ref="allowedTabs" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="budgetCycle"/>
+				<xs:element ref="editYears" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="nationalDevelopmentYears" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="__typename"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="id" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Ун карточки</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="name" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Наименование карточки</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="started" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Дата начала карточки</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="finished" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Дата окончания карточки</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="projectCode" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Код продукта</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="isBlockedToEdit" type="xs:boolean" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Блокировка поля на редактирование</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="isBlockedToCreateEdition" type="xs:boolean" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Блокировка поля на добавление</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="dictProjectStateName" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Статус проекта</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="versions" type="xs:anyType">
+		<xs:annotation>
+			<xs:documentation>Версии проекта</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="versionNumber" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Номер версии карточки</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="versionId" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Ун версии</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="isVersion" type="xs:boolean" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Актуальная ли версия</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="changeSetKindId" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Подписка на Id</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="isCanSyncResultsWithEsr" type="xs:boolean" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Синхронизация результата</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="isPrimaryVersion" type="xs:boolean" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Устаревшая ли версия</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="allowedTabs">
+		<xs:annotation>
+			<xs:documentation>Вкладки</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:list itemType="xs:string"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="budgetCycle" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Цикл бюджета</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="id"/>
+				<xs:element ref="name"/>
+				<xs:element ref="startYear"/>
+				<xs:element ref="__typename"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="startYear" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Год</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="editYears">
+		<xs:annotation>
+			<xs:documentation>Года для редактирования</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:list itemType="xs:int"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="nationalDevelopmentYears">
+		<xs:annotation>
+			<xs:documentation>Производственные года</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:list itemType="xs:int"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="executionMonitoring">
+		<xs:annotation>
+			<xs:documentation>Мониторинг процесса</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="tree"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="tree">
+		<xs:annotation>
+			<xs:documentation>Ветка</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="lastReportForPeriodInfo"/>
+				<xs:element ref="tasks"/>
+				<xs:element ref="__typename"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="lastReportForPeriodInfo">
+		<xs:annotation>
+			<xs:documentation>Информация о периоде </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="id"/>
+				<xs:element ref="dictProjectStateId"/>
+				<xs:element ref="dictProjectStageId"/>
+				<xs:element ref="approvalDate"/>
+				<xs:element ref="__typename"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="dictProjectStateId" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Статус Id процесса</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="dictProjectStageId" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Статус Id этапа</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="approvalDate" type="xs:date" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Дата</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="tasks" type="xs:anyType">
+		<xs:annotation>
+			<xs:documentation>Дерево заданий</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="executions" type="xs:anyType">
+		<xs:annotation>
+			<xs:documentation>Исполнитель</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="modelEdit">
+		<xs:annotation>
+			<xs:documentation>Модель редактирования</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="executions"/>
+				<xs:element ref="__typename"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by TeaM DJiNN (TeaM DJiNN) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="ModelEditWeb" type="ModelEditWeb">
+		<xs:annotation>
+			<xs:documentation>Модель редактирования Web сайта</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ModelEditWeb">
+		<xs:annotation>
+			<xs:documentation>Модель редактирования Web сайта</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="data"/>
+			<xs:element ref="variables"/>
+			<xs:element ref="File" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="data">
+		<xs:annotation>
+			<xs:documentation>Данные</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="executions"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="executions">
+		<xs:annotation>
+			<xs:documentation>Исполнитель</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="checkpointExec"/>
+				<xs:element ref="resultValueExec"/>
+				<xs:element ref="workPlanObjectExec"/>
+				<xs:element ref="__typename"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="__typename">
+		<xs:annotation>
+			<xs:documentation>Тип объекта</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="checkpointExec" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Контрольная точка выполнение</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="id"/>
+				<xs:element ref="planValue"/>
+				<xs:element ref="factValue"/>
+				<xs:element ref="endDate"/>
+				<xs:element ref="executionDate"/>
+				<xs:element ref="delay"/>
+				<xs:element ref="type"/>
+				<xs:element ref="achievementStatus"/>
+				<xs:element ref="status"/>
+				<xs:element ref="number"/>
+				<xs:element ref="statusType"/>
+				<xs:element ref="documentType"/>
+				<xs:element ref="comment"/>
+				<xs:element ref="additionalInformation"/>
+				<xs:element ref="dictProjectStageName"/>
+				<xs:element ref="dictProjectStateName"/>
+				<xs:element ref="reasonOfEdit"/>
+				<xs:element ref="documents" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="bpAgreementsInformation"/>
+				<xs:element ref="__typename"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="id" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Ун записи</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="planValue" type="xs:float" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Планируемое значение</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="factValue" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Фактическое значение</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="endDate" type="xs:date" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Дата окончения</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="executionDate" type="xs:date" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Дата исполнения</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="delay" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Время</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="type" type="xs:string" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Тип</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="achievementStatus" type="xs:string" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Достижения статуса</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="status" type="xs:string" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Статус</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="number" type="xs:string" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Номер версии</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="statusType" type="xs:string" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Тип статуса</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="documentType" type="xs:string" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Статус документа</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="comment" type="xs:string" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Комментарий</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="additionalInformation" type="xs:string" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Дополнительная информация</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="dictProjectStageName" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Наименование этапа проекта</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="dictProjectStateName" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Наименование состояние проекта</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="reasonOfEdit">
+		<xs:annotation>
+			<xs:documentation>Причина редактирования</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="documents">
+		<xs:annotation>
+			<xs:documentation>Документы на отправку</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="id"/>
+				<xs:element ref="name"/>
+				<xs:element ref="number"/>
+				<xs:element ref="date"/>
+				<xs:element ref="npaKindId"/>
+				<xs:element ref="link"/>
+				<xs:element ref="authorDepartmentName"/>
+				<xs:element ref="fileIdList" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="isDSP"/>
+				<xs:element ref="authorDepartmentId"/>
+				<xs:element ref="orderNumber"/>
+				<xs:element ref="bpFileId"/>
+				<xs:element ref="npaKind" minOccurs="0"/>
+				<xs:element ref="authorDepartment" minOccurs="0"/>
+				<xs:element ref="authorDepartmentName" minOccurs="0"/>
+				<xs:element ref="files" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="__typename"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="bpAgreementsInformation">
+		<xs:annotation>
+			<xs:documentation>Информация о соглашении</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="totalAgreementSum"/>
+				<xs:element ref="totalLboSum"/>
+				<xs:element ref="reportCountPlan"/>
+				<xs:element ref="providedReportCount"/>
+				<xs:element ref="unprovidedReportCount"/>
+				<xs:element ref="approvedGz"/>
+				<xs:element ref="subjectCount"/>
+				<xs:element ref="agreementConclusionCount"/>
+				<xs:element ref="agreementRejectedCount"/>
+				<xs:element ref="agreementNotConclusionCount"/>
+				<xs:element ref="reportMaxDate"/>
+				<xs:element ref="reasonDocuments" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="__typename"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="totalAgreementSum" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Информация о сумме</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="totalLboSum" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Колличество сумм</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="reportCountPlan" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Отчет о колличестве планов</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="providedReportCount" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Колличество поставщиков</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="unprovidedReportCount" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Отозванные поставщики</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="approvedGz" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Утвержденные</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="subjectCount" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Кооличество субъектов</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="agreementConclusionCount" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Колличество соглашений консультаций</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="agreementRejectedCount" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Колличество откланненых соглашений консультаций</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="agreementNotConclusionCount" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Колличество не данных соглашений</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="reportMaxDate" type="xs:date" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Максимальная дата отчета</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="reasonDocuments" type="xs:base64Binary" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Причинный документ</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="variables">
+		<xs:annotation>
+			<xs:documentation>Запрос на сохранение</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="request"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="request">
+		<xs:annotation>
+			<xs:documentation>Запрос</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="factValue"/>
+				<xs:element ref="executionDate"/>
+				<xs:element ref="delay"/>
+				<xs:element ref="type"/>
+				<xs:element ref="achievementStatus"/>
+				<xs:element ref="status"/>
+				<xs:element ref="statusType"/>
+				<xs:element ref="month"/>
+				<xs:element ref="year"/>
+				<xs:element ref="documentType"/>
+				<xs:element ref="comment"/>
+				<xs:element ref="additionalInformation"/>
+				<xs:element ref="documents" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="id"/>
+				<xs:element ref="parentId"/>
+				<xs:element ref="isAutoCreate"/>
+				<xs:element ref="manualEdit"/>
+				<xs:element ref="prove"/>
+				<xs:element ref="serviceExpired"/>
+				<xs:element ref="serviceForecast"/>
+				<xs:element ref="checkpointId"/>
+				<xs:element ref="projectKind"/>
+				<xs:element ref="forecastValue"/>
+				<xs:element ref="projectTaskResultValueId"/>
+				<xs:element ref="workPlanObjectId"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="month" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Месяц</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="year" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Год</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="name">
+		<xs:annotation>
+			<xs:documentation>Наименование</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="date" type="xs:string" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Дата документа</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="npaKindId" type="xs:long" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Ун вида документа</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="link" type="xs:string" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Ссылка</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="authorDepartmentName" type="xs:string" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Наименование департамента</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="fileIdList" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>Ун файлов вложенных</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="isDSP" type="xs:boolean" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Признак ДСП</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="parentId" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Id Родителя</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="isAutoCreate" type="xs:boolean" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Признак автоматического создания</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="manualEdit" type="xs:boolean" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Редактирование</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="prove" type="xs:boolean" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Пров</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="serviceExpired" type="xs:boolean" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Сервисная экспертиза</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="serviceForecast" type="xs:boolean" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Сервис</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="checkpointId" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Ун чекпоинта</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="projectKind" type="xs:string" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Проект редактирования</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="File">
+		<xs:annotation>
+			<xs:documentation>Файл на сервере</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="id"/>
+				<xs:element ref="name"/>
+				<xs:element ref="size"/>
+				<xs:element ref="url"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="size" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Размер файла</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="url">
+		<xs:annotation>
+			<xs:documentation>Ссылка</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="forecastValue" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Планируемый параметер</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="projectTaskResultValueId" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Ун значения модели</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="authorDepartmentId" type="xs:long" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Ун автора департамента</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="workPlanObjectId" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Ун объекта  значения модели</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="resultValueExec" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Модель редактирования значения результата</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="id"/>
+				<xs:element ref="planValue"/>
+				<xs:element ref="factValue"/>
+				<xs:element ref="forecastValue"/>
+				<xs:element ref="endDate"/>
+				<xs:element ref="executionDate"/>
+				<xs:element ref="delay"/>
+				<xs:element ref="type"/>
+				<xs:element ref="achievementStatus"/>
+				<xs:element ref="status"/>
+				<xs:element ref="number"/>
+				<xs:element ref="statusType"/>
+				<xs:element ref="documentType"/>
+				<xs:element ref="comment"/>
+				<xs:element ref="additionalInformation"/>
+				<xs:element ref="dictProjectStageName"/>
+				<xs:element ref="dictProjectStateName"/>
+				<xs:element ref="dynamics"/>
+				<xs:element ref="warningMessage"/>
+				<xs:element ref="documents" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="__typename"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="dynamics" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Признак динамической модели</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="warningMessage" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Сообщение об ошибке</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="orderNumber" type="xs:string" nillable="1">
+		<xs:annotation>
+			<xs:documentation>Номер </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="bpFileId" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Файл id</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="npaKind">
+		<xs:annotation>
+			<xs:documentation>Докуметн основание</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="id"/>
+				<xs:element ref="name"/>
+				<xs:element ref="__typename"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="authorDepartment" type="xs:string" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Автор департамент</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="files">
+		<xs:annotation>
+			<xs:documentation>Файлы значения результата</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="workPlanObjectExec" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Объекты результата</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="id"/>
+				<xs:element ref="planValue"/>
+				<xs:element ref="factValue"/>
+				<xs:element ref="forecastValue"/>
+				<xs:element ref="endDate"/>
+				<xs:element ref="executionDate"/>
+				<xs:element ref="delay"/>
+				<xs:element ref="type"/>
+				<xs:element ref="achievementStatus"/>
+				<xs:element ref="status"/>
+				<xs:element ref="number"/>
+				<xs:element ref="statusType"/>
+				<xs:element ref="documentType"/>
+				<xs:element ref="comment"/>
+				<xs:element ref="additionalInformation"/>
+				<xs:element ref="dictProjectStageName"/>
+				<xs:element ref="dictProjectStateName"/>
+				<xs:element ref="documents" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

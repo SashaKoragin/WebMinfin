@@ -1,0 +1,700 @@
+﻿<UserControl x:Class="UserInterfaceMinfin.UserControl.EditObject.UserControl.UserControlEditObject"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UserInterfaceMinfin.UserControl.EditObject.UserControl"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="2000" d:DesignWidth="2000">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
+        <StackPanel HorizontalAlignment="Left">
+            <WrapPanel>
+                <TextBlock Padding="20" Style="{DynamicResource MaterialDesignTitleTextBlock}">Месяц:</TextBlock>
+                <ComboBox
+                    MinWidth="50"
+                    MaxWidth="100"
+                    Margin="5,5,5,5"
+                    Style="{DynamicResource MaterialDesignComboBox}"
+                    ItemsSource="{Binding ModelPeriod.DictionaryMonth}"
+                    SelectedItem="{Binding ModelPeriod.SelectMonth, ValidatesOnDataErrors=True, ValidatesOnExceptions=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
+                    Validation.ErrorTemplate="{StaticResource ValidationError}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock MaxWidth="700" Style="{DynamicResource MaterialDesignTitleTextBlock}" Text="{Binding NameMouth}" FontSize="14" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <TextBlock Padding="20" Style="{DynamicResource MaterialDesignTitleTextBlock}">Год:</TextBlock>
+                <ComboBox
+                    MinWidth="50"
+                    MaxWidth="100"
+                    Margin="5,5,5,5"
+                    Style="{DynamicResource MaterialDesignComboBox}"
+                    ItemsSource="{Binding ModelPeriod.ListYear}"
+                    SelectedItem="{Binding ModelPeriod.SelectYear, ValidatesOnDataErrors=True, ValidatesOnExceptions=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
+                    Validation.ErrorTemplate="{StaticResource ValidationError}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock MaxWidth="700" Style="{DynamicResource MaterialDesignTitleTextBlock}" Text="{Binding}" FontSize="14" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </WrapPanel>
+
+            <WrapPanel>
+                <TextBlock Padding="20" Style="{DynamicResource MaterialDesignTitleTextBlock}" >Выбор ЭЦП:</TextBlock>
+                <ComboBox
+                    MinWidth="700"
+                    MaxWidth="700"
+                    Margin="5,5,5,5"
+                    Style="{DynamicResource MaterialDesignComboBox}"
+                    ItemsSource="{Binding ModelCertificate.CollectionCertificate}"
+                    SelectedItem="{Binding ModelCertificate.SelectCertificate, ValidatesOnDataErrors=True, ValidatesOnExceptions=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
+                    Validation.ErrorTemplate="{StaticResource ValidationError}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock MaxWidth="700" Style="{DynamicResource MaterialDesignTitleTextBlock}" Text="{Binding Subject}" FontSize="14" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </WrapPanel>
+            <WrapPanel>
+                <Button Margin="5,5,5,5" HorizontalAlignment="Left" MinWidth="200"
+                        Command="{Binding StartWebSite}"
+                        MaxWidth="200">Подгрузить данные</Button>
+                <Button Margin="5,5,5,5" HorizontalAlignment="Left" MinWidth="200"
+                        Command="{Binding DownLoadVid}" IsEnabled="False"
+                        MaxWidth="250">Cправочник Виды документов</Button>
+                <Button Margin="5,5,5,5" HorizontalAlignment="Left" MinWidth="200"
+                        Command="{Binding DownLoadOrganization}" IsEnabled="False"
+                        MaxWidth="250">Cправочник Организаций</Button>
+            </WrapPanel>
+
+            <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">Excel файл:</TextBlock>
+            <Button Margin="5,5,5,5" HorizontalAlignment="Left" MinWidth="200"
+                    Command="{Binding CollectionTemplateXlsx.ClearAllModelCommand}"
+                    MaxWidth="200">Очистить всё</Button>
+
+            <ListView x:Name="XlsxModel">
+                <ListView.Template>
+                    <ControlTemplate>
+                        <ListView x:Name="UserTemplate"
+                                  Width="1600"
+                                  ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                  ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                                  ScrollViewer.CanContentScroll="False"
+                                  MaxHeight="400"
+                                  AllowDrop="True"
+                                  Drop="ListView_Drop"
+                                  HorizontalAlignment="Left"
+                                  ItemsSource="{Binding CollectionTemplateXlsx.ModelCollectionXlsx, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, ValidatesOnDataErrors=True, NotifyOnTargetUpdated=True}"
+                                  SelectedItem="{Binding CollectionTemplateXlsx.SelectModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}"
+                                  ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
+                                  Validation.ErrorTemplate="{StaticResource ValidationError}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn>
+                                        <GridViewColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock  TextWrapping="Wrap" TextAlignment="Left">№</TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.HeaderTemplate>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <WrapPanel>
+                                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Center"  TextWrapping="Wrap" Text="{Binding IdTemplate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, NotifyOnSourceUpdated=True, ValidatesOnDataErrors=True}"
+                                                             ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
+                                                             Validation.ErrorTemplate="{StaticResource ValidationError}"></TextBlock>
+                                                </WrapPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn>
+                                        <GridViewColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock TextWrapping="Wrap" TextAlignment="Left">Составляющие результата ВП ВПЦТ в ЭБ</TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.HeaderTemplate>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <WrapPanel>
+                                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding NameResult, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, NotifyOnSourceUpdated=True, ValidatesOnDataErrors=True}"
+                                                               ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
+                                                               Validation.ErrorTemplate="{StaticResource ValidationError}"></TextBlock>
+                                                </WrapPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn>
+                                        <GridViewColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock TextWrapping="Wrap" TextAlignment="Left">Фактическое значение на конец отчетного периода</TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.HeaderTemplate>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <WrapPanel>
+                                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding FactParameter, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, NotifyOnSourceUpdated=True, ValidatesOnDataErrors=True}"
+                                                               ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
+                                                               Validation.ErrorTemplate="{StaticResource ValidationError}"></TextBlock>
+                                                </WrapPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn>
+                                        <GridViewColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock TextWrapping="Wrap" TextAlignment="Left">Прогнозное значение на конец текущего года</TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.HeaderTemplate>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <WrapPanel>
+                                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ForecastParameter, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, NotifyOnSourceUpdated=True, ValidatesOnDataErrors=True}"
+                                                               ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
+                                                               Validation.ErrorTemplate="{StaticResource ValidationError}"></TextBlock>
+                                                </WrapPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn>
+                                        <GridViewColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock TextWrapping="Wrap" TextAlignment="Left">Дата исполнения</TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.HeaderTemplate>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <WrapPanel>
+                                                    <DatePicker
+                                                        Height="24"
+                                                        SelectedDate="{Binding DateExecution, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                                        Text="{Binding StringFormat='dd MM yyyy', RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}"
+                                                        ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
+                                                        Validation.ErrorTemplate="{StaticResource ValidationError}"></DatePicker>
+                                                </WrapPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn>
+                                        <GridViewColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock TextWrapping="Wrap" TextAlignment="Left">Номер документа</TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.HeaderTemplate>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <WrapPanel>
+                                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding NumberDocument, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, NotifyOnSourceUpdated=True, ValidatesOnDataErrors=True}"
+                                                               ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
+                                                               Validation.ErrorTemplate="{StaticResource ValidationError}"></TextBlock>
+                                                </WrapPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn>
+                                        <GridViewColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock TextWrapping="Wrap" TextAlignment="Left">Дата документа</TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.HeaderTemplate>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <WrapPanel>
+                                                    <DatePicker
+                                                        Height="24"
+                                                        SelectedDate="{Binding DateDocument, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                                        Text="{Binding StringFormat='dd MM yyyy', RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}"
+                                                        ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
+                                                        Validation.ErrorTemplate="{StaticResource ValidationError}"></DatePicker>
+                                                </WrapPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn>
+                                        <GridViewColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock TextWrapping="Wrap" TextAlignment="Left">Вид</TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.HeaderTemplate>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <WrapPanel>
+                                                    <ComboBox
+                                                        Margin="5,0,5,0"
+                                                        Style="{DynamicResource MaterialDesignComboBox}"
+                                                        Background="White"
+                                                        ItemsSource="{Binding ArrayViewDocument}"
+                                                        SelectedItem="{Binding ViewVidDocument, ValidatesOnDataErrors=True, ValidatesOnExceptions=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                        ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
+                                                        Validation.ErrorTemplate="{StaticResource ValidationError}">
+                                                        <ComboBox.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <StackPanel Orientation="Horizontal" >
+                                                                    <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}" Text="{Binding Name}" FontSize="14" />
+                                                                </StackPanel>
+                                                            </DataTemplate>
+                                                        </ComboBox.ItemTemplate>
+                                                    </ComboBox>
+                                                </WrapPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn>
+                                        <GridViewColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock TextWrapping="Wrap" TextAlignment="Left">Принявший орган</TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.HeaderTemplate>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <WrapPanel>
+                                                    <ComboBox
+                                                        Margin="5,0,5,0"
+                                                        Style="{DynamicResource MaterialDesignComboBox}"
+                                                        ItemsSource="{Binding ArrayTheReceivingBody}"
+                                                        Background="White"
+                                                        SelectedItem="{Binding TheReceivingOrganization, ValidatesOnDataErrors=True, ValidatesOnExceptions=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                        ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
+                                                        Validation.ErrorTemplate="{StaticResource ValidationError}">
+                                                        <ComboBox.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <StackPanel Orientation="Horizontal">
+                                                                    <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}" Text="{Binding ShortName}" FontSize="14" />
+                                                                </StackPanel>
+                                                            </DataTemplate>
+                                                        </ComboBox.ItemTemplate>
+                                                    </ComboBox>
+                                                </WrapPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn>
+                                        <GridViewColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock TextWrapping="Wrap" TextAlignment="Left">Наименование</TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.HeaderTemplate>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <WrapPanel>
+                                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, NotifyOnSourceUpdated=True, ValidatesOnDataErrors=True}"
+                                                               ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
+                                                               Validation.ErrorTemplate="{StaticResource ValidationError}"></TextBlock>
+                                                </WrapPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Width="400" Header="">
+                                        <GridViewColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock TextWrapping="Wrap" TextAlignment="Left">Ссылка</TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.HeaderTemplate>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <WrapPanel>
+                                                    <TextBlock  HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="NoWrap" Text="{Binding Link, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, NotifyOnSourceUpdated=True, ValidatesOnDataErrors=True}"
+                                                               ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
+                                                               Validation.ErrorTemplate="{StaticResource ValidationError}" ></TextBlock>
+                                                </WrapPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn>
+                                        <GridViewColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Width="500" TextWrapping="Wrap" TextAlignment="Left">Файлы</TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.HeaderTemplate>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <WrapPanel>
+                                                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" HorizontalAlignment="Left" Height="24" Width="24"
+                                                            Command="{Binding OpenFileDialogCommand}" CommandParameter="{Binding }"
+                                                            ToolTip="Прикрепить файлы">
+                                                        <materialDesign:PackIcon Kind="Paperclip" Height="24" Width="24" />
+                                                    </Button>
+                                                    <ComboBox
+                                                        Margin="5,0,5,0"
+                                                        Style="{DynamicResource MaterialDesignComboBox}"
+                                                        ItemsSource="{Binding Files, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, NotifyOnSourceUpdated=True, ValidatesOnDataErrors=True}"
+                                                        Background="White"
+                                                        ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
+                                                        Validation.ErrorTemplate="{StaticResource ValidationError}">
+                                                        <ComboBox.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <WrapPanel Orientation="Horizontal">
+                                                                    <Image Width="16" Height="16" Source="{Binding Icon, Converter={StaticResource ConvertorImage}}"></Image>
+                                                                    <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}" Text="{Binding NameFile}" FontSize="14" />
+                                                                </WrapPanel>
+                                                            </DataTemplate>
+                                                        </ComboBox.ItemTemplate>
+                                                    </ComboBox>
+                                                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" HorizontalAlignment="Left" Height="24" Width="24"
+                                                            Command="{Binding ClearAllFileCommand}" CommandParameter="{Binding }"
+                                                            ToolTip="Удалить файлы">
+                                                        <materialDesign:PackIcon Kind="Delete" Height="24" Width="24" />
+                                                    </Button>
+                                                </WrapPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                            <ListView.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Выбрать пользовательский шаблон" Command="{Binding SelectFileTemplateUserXlsx}"></MenuItem>
+                                </ContextMenu>
+                            </ListView.ContextMenu>
+                        </ListView>
+                    </ControlTemplate>
+                </ListView.Template>
+            </ListView>
+            <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">Задания проекта Таблица:</TextBlock>
+            <WrapPanel>
+                <Button Margin="5,5,5,5" HorizontalAlignment="Left" MinWidth="200"
+                        Command="{Binding FullEditDataModelWeb}"
+                        MaxWidth="200">Редактировать все</Button>
+                <Menu Style="{StaticResource MaterialDesignMenu}" Margin="5,5,5,5">
+                    <MenuItem Header="Согласование" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                        <MenuItem Header="Значения результата" Command="{Binding AllExecutionCheckpoint}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Header}"></MenuItem>
+                        <MenuItem Header="КТ" Command="{Binding AllExecutionCheckpoint}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Header}"></MenuItem>
+                        <MenuItem Header="Объект результата" Command="{Binding AllExecutionCheckpoint}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Header}"></MenuItem>
+                        <MenuItem Header="КТ Объекта результата" Command="{Binding AllExecutionCheckpoint}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Header}"></MenuItem>
+                    </MenuItem>
+                </Menu>
+            </WrapPanel>
+            <ListView x:Name="WebModelAndUserModel">
+                <ListView.Template>
+                    <ControlTemplate>
+                        <ListView Width="Auto" 
+                                  MaxHeight="400"
+                                  ItemsSource="{Binding ModelWebRequestAndResponse.AllModel.WebModelAndUserModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="Auto" Header="Ун проекта">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <WrapPanel>
+                                                    <TextBlock HorizontalAlignment="Stretch" Text="{Binding Id}"></TextBlock>
+                                                </WrapPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Width="Auto" Header="Наименование">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <WrapPanel>
+                                                    <TextBlock HorizontalAlignment="Stretch" Text="{Binding Name}"></TextBlock>
+                                                </WrapPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Width="400" Header="Наименование КТ">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <WrapPanel>
+                                                    <TextBlock HorizontalAlignment="Stretch" ToolTip="{Binding NameWebModel}"  Text="{Binding NameWebModel}"></TextBlock>
+                                                </WrapPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn>
+                                        <GridViewColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Width="500" TextWrapping="Wrap" TextAlignment="Left">Пользовательская модель раскладки</TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.HeaderTemplate>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <WrapPanel>
+                                                    <ComboBox
+                                                        Margin="5,0,5,0"
+                                                        Style="{DynamicResource MaterialDesignComboBox}"
+                                                        ItemsSource="{Binding ModelCollectionXlsx, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, ValidatesOnDataErrors=True, NotifyOnTargetUpdated=True}"
+                                                        SelectedItem="{Binding ModelXlsx, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,  NotifyOnSourceUpdated=True, ValidatesOnDataErrors=True, NotifyOnTargetUpdated=True}"
+                                                        Background="White"
+                                                        ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
+                                                        Validation.ErrorTemplate="{StaticResource ValidationError}">
+                                                        <ComboBox.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <WrapPanel Orientation="Horizontal">
+                                                                    <TextBlock Margin="5,0,5,0" Style="{DynamicResource MaterialDesignTitleTextBlock}" Text="{Binding IdTemplate}" FontSize="14" />
+                                                                    <TextBlock Margin="5,0,5,0" Style="{DynamicResource MaterialDesignTitleTextBlock}" Text="{Binding NameResult}" FontSize="14" />
+                                                                    <TextBlock Margin="5,0,5,0" Style="{DynamicResource MaterialDesignTitleTextBlock}" Text="{Binding Content}" FontSize="14" />
+                                                                    <TextBlock Margin="5,0,5,0" Style="{DynamicResource MaterialDesignTitleTextBlock}" Text="{Binding NumberDocument}" FontSize="14" />
+                                                                </WrapPanel>
+                                                            </DataTemplate>
+                                                        </ComboBox.ItemTemplate>
+                                                    </ComboBox>
+                                                </WrapPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Width="300" Header="Результат обработки данных">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <WrapPanel>
+                                                    <TextBlock HorizontalAlignment="Stretch" Text="{Binding ResultResponseEdit}"></TextBlock>
+                                                </WrapPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="Согласование">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <WrapPanel>
+                                                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" 
+                                                            HorizontalAlignment="Left" Height="24" Width="24"
+                                                            Command="{Binding ElementName=WebModelAndUserModel, Path=DataContext.ExecutionCheckpoint}"
+                                                            CommandParameter="{Binding IdExecution }"
+                                                            ToolTip="На согласование">
+                                                        <materialDesign:PackIcon Kind="Pen"  Height="24" Width="24" />
+                                                    </Button>
+                                                </WrapPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </ControlTemplate> 
+                </ListView.Template>
+            </ListView>
+            <!--<TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">Проекты:</TextBlock>
+            <ListView x:Name="ListViewProject">
+                <ListView.Template>
+                    <ControlTemplate>
+                        <ListView Width="Auto"
+                                  MaxHeight="200"
+                                  ItemsSource="{Binding ModelWebRequestAndResponse.AllModel.AllProjectModel.data.departmentalProject.list.data, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="Auto" Header="Ун проекта">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <WrapPanel>
+                                                    <TextBlock HorizontalAlignment="Stretch" Text="{Binding id}"></TextBlock>
+                                                </WrapPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Width="Auto" Header="Код проекта">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <WrapPanel>
+                                                    <TextBlock HorizontalAlignment="Stretch" Text="{Binding code}"></TextBlock>
+                                                </WrapPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Width="Auto" Header="Наименование проекта">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <WrapPanel>
+                                                    <TextBlock HorizontalAlignment="Stretch" Text="{Binding name}"></TextBlock>
+                                                </WrapPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Width="Auto" Header="Версия проекта">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <WrapPanel>
+                                                    <TextBlock HorizontalAlignment="Stretch" Text="{Binding versionNumber}"></TextBlock>
+                                                </WrapPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </ControlTemplate>
+                </ListView.Template>
+            </ListView>
+            <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">Версии проекта:</TextBlock>
+            <ListView x:Name="ListViewVersion">
+                <ListView.Template>
+                    <ControlTemplate>
+                        <ListView Width="Auto"
+                                  MaxHeight="200"
+                                  ItemsSource="{Binding ModelWebRequestAndResponse.AllModel.AllVersionData.data.departmentalProject.card.versions, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="Auto" Header="Ун проекта">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <WrapPanel>
+                                                    <TextBlock HorizontalAlignment="Stretch" Text="{Binding id}"></TextBlock>
+                                                </WrapPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Width="Auto" Header="Актуальная версия">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <WrapPanel>
+                                                    <TextBlock HorizontalAlignment="Stretch" Text="{Binding versionIsActual}"></TextBlock>
+                                                </WrapPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Width="Auto" Header="Номер">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <WrapPanel>
+                                                    <TextBlock HorizontalAlignment="Stretch" Text="{Binding number}"></TextBlock>
+                                                </WrapPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Width="Auto" Header="Версия проекта">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <WrapPanel>
+                                                    <TextBlock HorizontalAlignment="Stretch" Text="{Binding versionNumber}"></TextBlock>
+                                                </WrapPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Width="Auto" Header="Год бюджета">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <WrapPanel>
+                                                    <TextBlock HorizontalAlignment="Stretch" Text="{Binding budgetCycle.startYear}"></TextBlock>
+                                                </WrapPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Width="Auto" Header="Период бюджет">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <WrapPanel>
+                                                    <TextBlock HorizontalAlignment="Stretch" Text="{Binding budgetCycle.name}"></TextBlock>
+                                                </WrapPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </ControlTemplate>
+                </ListView.Template>
+            </ListView>-->
+            <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">Задания проекта Дерево:</TextBlock>
+            <ItemsControl x:Name="TreeElement" ItemsSource="{Binding ModelWebRequestAndResponse.AllModel.AllTask.data.executionMonitoring.tree.tasks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <WrapPanel>
+                                <TextBlock Margin="5,5,5,5" Text="{Binding id}"/>
+                                <TextBlock Margin="5,5,5,5" Text="{Binding name}"/>
+                                <TextBlock Margin="5,5,5,5" Text="{Binding responsibleExecutor}"/>
+                                <TextBlock Margin="5,5,5,5" Text="{Binding execution.__typename}"/>
+                            </WrapPanel>
+                            <TreeView  MaxHeight="250" ItemsSource="{Binding results}">
+                                <TreeView.ItemTemplate>
+                                    <HierarchicalDataTemplate ItemsSource="{Binding values}">
+                                        <!--<StackPanel>-->
+                                        <WrapPanel>
+                                            <TextBlock Margin="5,5,5,5" Text="{Binding id}"/>
+                                            <TextBlock Margin="5,5,5,5" Text="{Binding name}"/>
+                                            <TextBlock Margin="5,5,5,5" Text="{Binding responsibleExecutor}"/>
+                                            <TextBlock Margin="5,5,5,5" Text="{Binding execution.__typename}"/>
+                                        </WrapPanel>
+                                        <!--<ItemsControl ItemsSource="{Binding checkpoints}">
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <WrapPanel Margin="50,5,5,5">
+                                                                    <TextBlock Margin="5,5,5,5" Text="{Binding id}"></TextBlock>
+                                                                    <TextBlock Margin="5,5,5,5" Text="{Binding name}"></TextBlock>
+                                                                    <TextBlock Margin="5,5,5,5" Text="{Binding plannedDate}"/>
+                                                                    <TextBlock Margin="5,5,5,5" Text="{Binding responsibleExecutor}"/>
+                                                                    <TextBlock Margin="5,5,5,5" Text="{Binding execution.__typename}"></TextBlock>
+                                                                </WrapPanel>
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
+                                            </StackPanel>-->
+                                        <HierarchicalDataTemplate.ItemTemplate>
+                                            <HierarchicalDataTemplate ItemsSource="{Binding objects}">
+                                                <StackPanel>
+                                                    <WrapPanel>
+                                                        <TextBlock Margin="5,5,5,5" Text="{Binding id}"/>
+                                                        <TextBlock Margin="5,5,5,5" Text="{Binding name}"/>
+                                                        <TextBlock Margin="5,5,5,5" Text="{Binding responsibleExecutor}"/>
+                                                        <TextBlock Margin="5,5,5,5" Text="{Binding execution.__typename}"/>
+                                                    </WrapPanel>
+                                                    <ItemsControl ItemsSource="{Binding checkpoints}">
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <WrapPanel Margin="50,5,5,5">
+                                                                    <TextBlock Margin="5,5,5,5" Text="{Binding id}"></TextBlock>
+                                                                    <TextBlock Margin="5,5,5,5" Text="{Binding name}"></TextBlock>
+                                                                    <TextBlock Margin="5,5,5,5" Text="{Binding plannedDate}"/>
+                                                                    <TextBlock Margin="5,5,5,5" Text="{Binding responsibleExecutor}"/>
+                                                                    <TextBlock Margin="5,5,5,5" Text="{Binding execution.__typename}"></TextBlock>
+                                                                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" HorizontalAlignment="Left" Height="24" Width="24"
+                                                                            Command="{Binding ElementName=TreeElement, Path=DataContext.EditModel}"
+                                                                            CommandParameter="{Binding }"
+                                                                            ToolTip="Редактировать">
+                                                                        <materialDesign:PackIcon Kind="AccountEdit" Height="24" Width="24" />
+                                                                    </Button>
+                                                                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" HorizontalAlignment="Left" Height="24" Width="24"
+                                                                            Command="{Binding ElementName=TreeElement, Path=DataContext.DeleteModel}"
+                                                                            CommandParameter="{Binding }"
+                                                                            ToolTip="Удалить">
+                                                                        <materialDesign:PackIcon Kind="Delete" Height="24" Width="24" />
+                                                                    </Button>
+                                                                </WrapPanel>
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
+
+                                                </StackPanel>
+                                                <HierarchicalDataTemplate.ItemTemplate>
+                                                    <HierarchicalDataTemplate ItemsSource="{Binding checkpoints}">
+                                                        <WrapPanel>
+                                                            <TextBlock Margin="5,5,5,5" Text="{Binding id}"/>
+                                                            <TextBlock Margin="5,5,5,5" Text="{Binding name}"/>
+                                                            <TextBlock Margin="5,5,5,5" Text="{Binding plannedDate}"/>
+                                                            <TextBlock Margin="5,5,5,5" Text="{Binding responsibleExecutor}"/>
+                                                            <TextBlock Margin="5,5,5,5" Text="{Binding execution.__typename}"></TextBlock>
+                                                            <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" HorizontalAlignment="Left" Height="24" Width="24"
+                                                                    Command="{Binding ElementName=TreeElement, Path=DataContext.EditModel}"
+                                                                    CommandParameter="{Binding }"
+                                                                    ToolTip="Редактировать">
+                                                                <materialDesign:PackIcon Kind="AccountEdit" Height="24" Width="24" />
+                                                            </Button>
+                                                            <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" HorizontalAlignment="Left" Height="24" Width="24"
+                                                                    Command="{Binding ElementName=TreeElement, Path=DataContext.DeleteModel}"
+                                                                    CommandParameter="{Binding }"
+                                                                    ToolTip="Удалить">
+                                                                <materialDesign:PackIcon Kind="Delete" Height="24" Width="24" />
+                                                            </Button>
+                                                        </WrapPanel>
+                                                    </HierarchicalDataTemplate>
+                                                </HierarchicalDataTemplate.ItemTemplate>
+                                            </HierarchicalDataTemplate>
+                                        </HierarchicalDataTemplate.ItemTemplate>
+                                    </HierarchicalDataTemplate>
+                                </TreeView.ItemTemplate>
+                            </TreeView>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

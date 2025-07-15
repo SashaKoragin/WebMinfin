@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by TeaM DJiNN (TeaM DJiNN) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="ModelDelete" type="ModelDelete">
+		<xs:annotation>
+			<xs:documentation>Модель удаления данных CHECKPOINT</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ModelDelete">
+		<xs:annotation>
+			<xs:documentation>Модель удаления данных CHECKPOINT</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="variables"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="variables">
+		<xs:annotation>
+			<xs:documentation>Запрос на удаление CHECKPOINT</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="request"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="request">
+		<xs:annotation>
+			<xs:documentation>Запрос</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="entityType"/>
+				<xs:element ref="executionIds" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="entityType" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Тип</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="executionIds" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>Ун контрольной точки</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

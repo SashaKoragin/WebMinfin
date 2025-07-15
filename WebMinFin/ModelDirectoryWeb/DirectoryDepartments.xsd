@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by TeaM DJiNN (TeaM DJiNN) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="DirectoryDepartments" type="DirectoryDepartments">
+		<xs:annotation>
+			<xs:documentation>Справочник департаментов</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="DirectoryDepartments">
+		<xs:annotation>
+			<xs:documentation>Справочник департаментов</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="departments"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="departments">
+		<xs:annotation>
+			<xs:documentation>Департамент</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="__typename"/>
+				<xs:element ref="list"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="list">
+		<xs:annotation>
+			<xs:documentation>Лист</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="__typename"/>
+				<xs:element ref="data" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="data">
+		<xs:annotation>
+			<xs:documentation>Справочник</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="id"/>
+				<xs:element ref="name"/>
+				<xs:element ref="shortName"/>
+				<xs:element ref="inn"/>
+				<xs:element ref="kpp"/>
+				<xs:element ref="deleted"/>
+				<xs:element ref="dateEnd"/>
+				<xs:element ref="__typename"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="id" type="xs:long" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Ун в справочнике</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="name" type="xs:string" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Наименование в справочнике</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="shortName" type="xs:string" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Владелец</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="inn" type="xs:string" nillable="true">
+		<xs:annotation>
+			<xs:documentation>ИНН</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="kpp" type="xs:string" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Кпп</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="deleted" type="xs:boolean" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Признак удаления</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="dateEnd" type="xs:date" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Дата окончания</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="__typename" type="xs:string" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Тип имени</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

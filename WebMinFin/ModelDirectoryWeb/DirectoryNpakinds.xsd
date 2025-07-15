@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by TeaM DJiNN (TeaM DJiNN) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="DirectoryNpakinds" type="DirectoryNpakinds">
+		<xs:annotation>
+			<xs:documentation>Справочник видов</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="DirectoryNpakinds">
+		<xs:annotation>
+			<xs:documentation>Справочник видов</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="npakinds"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="npakinds">
+		<xs:annotation>
+			<xs:documentation>Справочник</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="__typename"/>
+				<xs:element ref="list"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="list">
+		<xs:annotation>
+			<xs:documentation>Лист</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="data" maxOccurs="unbounded"/>
+				<xs:element ref="__typename"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="data">
+		<xs:annotation>
+			<xs:documentation>Справочник</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="id"/>
+				<xs:element ref="name"/>
+				<xs:element ref="ppNumber"/>
+				<xs:element ref="__typename"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="id" type="xs:long" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Ун записи</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="name" type="xs:string" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Наименование</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="ppNumber" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Номер ПП</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="__typename" type="xs:string" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Тип имени</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

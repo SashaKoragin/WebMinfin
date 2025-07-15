@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by TeaM DJiNN (TeaM DJiNN) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="DirectoryWeb" type="DirectoryWeb">
+		<xs:annotation>
+			<xs:documentation>Справочники МИНФИН</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="DirectoryWeb">
+		<xs:annotation>
+			<xs:documentation>Справочники МИНФИН</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="data"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="data" type="xs:anyType">
+		<xs:annotation>
+			<xs:documentation>Глобальная обертка данных с сайта</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>
